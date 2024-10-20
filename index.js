@@ -23,6 +23,9 @@ async function main() {
     case "check-db-connection":
       await checkConnection();
       break;
+    case "reset-db":
+      await resetDb();
+      break;
     case "bulk-insert":
       await bulkInsert();
       break;
@@ -47,6 +50,17 @@ async function main() {
       console.log("bulk insert failed");
     }
     console.log("bulk insert ended...");
+  }
+
+  async function resetDb() {
+    console.log("reset db started...");
+    const result = await Model.deleteMany({});
+    if (result) {
+      console.log("reset db success");
+    } else {
+      console.log("reset db failed");
+    }
+    console.log("reset db ended...");
   }
 
   return;
