@@ -29,6 +29,9 @@ async function main() {
     case "bulk-insert":
       await bulkInsert();
       break;
+    case "get-all":
+      await getAll();
+      break;
     default:
       throw Error("command not found");
   }
@@ -61,6 +64,18 @@ async function main() {
       console.log("reset db failed");
     }
     console.log("reset db ended...");
+  }
+
+  async function getAll() {
+    console.log("get all started...");
+    const result = await Model.find({});
+    console.log("get all result:", result);
+    if (result) {
+      console.log("get all success");
+    } else {
+      console.log("get all failed");
+    }
+    console.log("get all ended...");
   }
 
   return;
